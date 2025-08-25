@@ -22,10 +22,9 @@ jobs:
           java-version: '17'
           cache: gradle
 
+      # NÃO fixe versão do cmdline-tools; use o que já vem no runner
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
-        with:
-          cmdline-tools-version: 16.0
 
       - name: Install SDK packages
         run: |
