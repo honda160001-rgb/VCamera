@@ -22,7 +22,6 @@ jobs:
           java-version: '17'
           cache: gradle
 
-      # NÃO fixe versão do cmdline-tools; use o que já vem no runner
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
@@ -31,11 +30,9 @@ jobs:
           sdkmanager --install "platform-tools" "platforms;android-33" "build-tools;33.0.2"
           yes | sdkmanager --licenses
 
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
-
+      # Aqui troquei ./gradlew por gradle
       - name: Build Debug APK
-        run: ./gradlew --no-daemon :app:assembleDebug
+        run: gradle --no-daemon :app:assembleDebug
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
